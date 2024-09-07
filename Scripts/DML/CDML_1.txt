@@ -1,0 +1,32 @@
+INSERT INTO Autores (nombre, nacionalidad, fecha_nacimiento)
+VALUES ('Isabel Allende', 'Chilena', '1942-08-02'),
+       ('Jorge Luis Borges', 'Argentina', '1899-08-24'),
+       ('Mario Vargas Llosa', 'Peruana', '1936-03-28'),
+       ('George Orwell', 'Británica', '1903-06-25'),
+       ('Julio Cortázar', 'Argentina', '1914-08-26');
+
+INSERT INTO Libros (titulo, genero, fecha_publicacion, autor_id)
+VALUES ('La Casa de los Espíritus', 'Novela', '1982-09-01', 3),
+       ('Cuentos Completos', 'Cuento', '1974-06-01', 4),
+       ('La Ciudad y los Perros', 'Novela', '1963-09-01', 5),
+       ('1984', 'Distopía', '1949-06-08', 6),
+       ('Rayuela', 'Novela', '1963-06-01', 7),
+       ('El Aleph', 'Cuento', '1949-01-01', 4),
+       ('Los Detectives Salvajes', 'Novela', '1998-11-01', 8),
+       ('Animal Farm', 'Distopía', '1945-08-17', 6);
+
+INSERT INTO Usuarios (nombre, direccion, telefono, email, fecha_registro)
+VALUES ('Carlos Martínez', 'Calle Luna 345', '3112223344', 'carlosmartinez@example.com', '2023-04-12'),
+       ('Lucía Fernández', 'Calle Sol 567', '3123334455', 'luciafernandez@example.com', '2023-05-14'),
+       ('Miguel Rodríguez', 'Carrera 45 #10-20', '3104445566', 'miguelrodriguez@example.com', '2023-06-18'),
+       ('Claudia Torres', 'Avenida Las Flores 789', '3155556677', 'claudiatorres@example.com', '2023-07-20');
+       
+INSERT INTO Prestamos (libro_id, usuario_id, fecha_prestamo, fecha_devolucion, estado)
+VALUES (3, 3, '2023-08-01', '2023-08-20', 'devuelto'),
+       (4, 2, '2023-08-15', '2023-09-01', 'devuelto'),
+       (5, 4, '2023-08-20', NULL, 'prestado'),
+       (6, 1, '2023-09-01', NULL, 'prestado'),
+       (2, 3, '2023-09-05', NULL, 'prestado'),
+       (7, 1, '2023-09-03', NULL, 'prestado'),
+       (8, 4, '2023-09-05', NULL, 'prestado'),
+       (1, 2, '2023-09-07', NULL, 'prestado');
