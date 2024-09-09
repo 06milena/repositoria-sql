@@ -1,17 +1,7 @@
 -- Consultar sobre los autores y la cantidad de libros que tienen
 USE Biblioteca;
-SELECT Autores.nombre, COUNT(Libros.libro_id) AS cantidad_libros
+SELECT Autores.nombre, COUNT(Libros.id_libro) AS cantidad_libros
 FROM Autores
-JOIN Libros ON Autores.autor_id = Libros.autor_id
+JOIN Libros ON Autores.id_autor = Libros.id_autor
 GROUP BY Autores.nombre
 ORDER BY cantidad_libros DESC;
-
--- el libro más prestado y cuántas veces
-SELECT Libros.titulo, COUNT(Prestamos.prestamo_id) AS veces_prestado
-FROM Prestamos
-JOIN Libros ON Prestamos.libro_id = Libros.libro_id
-GROUP BY Libros.titulo
-ORDER BY veces_prestado DESC
-LIMIT 1;
-
-
