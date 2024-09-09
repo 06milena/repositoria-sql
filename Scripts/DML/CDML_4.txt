@@ -1,8 +1,14 @@
 -- Insertar más préstamos
 
-INSERT INTO Prestamos (id_usuario, id_libro, fecha_devolucion)
-VALUES (3, 3, '2024-09-12'),  -- Carlos López toma prestado "La casa de los espíritus"
-       (4, 4, '2024-09-20'),  -- María Fernández toma prestado "La ciudad y los perros"
-       (1, 5, '2024-09-25'),  -- Juan Pérez toma prestado "1984"
-       (2, 6, '2024-09-15'),  -- Ana Gómez toma prestado "Orgullo y prejuicio"
-       (5, 7, '2024-09-18');  -- Laura Jiménez toma prestado "Ensayo sobre la ceguera"
+INSERT INTO Prestamos (id_libro, id_usuario, fecha_prestamo, fecha_devolucion, estado)
+VALUES 
+(3, 3, '2023-08-01', '2024-08-20', 'Devuelto'),
+(4, 2, '2024-08-15', '2024-09-01', 'Devuelto'),
+(5, 4, '2024-08-20', '2024-09-01', 'Devuelto'),
+(6, 1, '2024-09-01', '2024-09-01', 'Pendiente'),
+(2, 3, '2024-09-05', '2024-09-01', 'Pendiente'),
+(7, 1, '2024-09-03', '2024-09-01', 'Pendiente'),
+(8, 4, '2024-09-05', '2024-09-12', 'Pendiente'),
+(1, 2, '2024-09-07', '2024-09-12', 'Pendiente');
+
+ 

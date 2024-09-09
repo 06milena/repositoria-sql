@@ -1,3 +1,0 @@
--- Eliminar la columna teléfono de la tabla Usuarios
-
-ALTER TABLE Usuarios DROP COLUMN telefono;
