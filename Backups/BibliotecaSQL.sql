@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `autores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `autores` (
-  `autor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_autor` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `nacionalidad` varchar(50) DEFAULT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
-  PRIMARY KEY (`autor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id_autor`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `autores` (
 
 LOCK TABLES `autores` WRITE;
 /*!40000 ALTER TABLE `autores` DISABLE KEYS */;
-INSERT INTO `autores` VALUES (1,'Gabriel García Márquez','Colombiana','1927-03-06'),(2,'J.K. Rowling','Británica','1965-07-31'),(3,'Isabel Allende','Chilena','1942-08-02'),(4,'Jorge Luis Borges','Argentina','1899-08-24'),(5,'Mario Vargas Llosa','Peruana','1936-03-28'),(6,'George Orwell','Británica','1903-06-25'),(7,'Julio Cortázar','Argentina','1914-08-26');
+INSERT INTO `autores` VALUES (1,'Gabriel García Márquez','Colombiano','1927-03-06'),(2,'J.K. Rowling','Británica','1965-07-31');
 /*!40000 ALTER TABLE `autores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,14 +49,17 @@ DROP TABLE IF EXISTS `libros`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `libros` (
-  `libro_id` int(11) NOT NULL AUTO_INCREMENT,
-  `titulo` varchar(255) NOT NULL,
+  `id_libro` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(200) NOT NULL,
+  `id_autor` int(11) DEFAULT NULL,
   `genero` varchar(50) DEFAULT NULL,
   `fecha_publicacion` date DEFAULT NULL,
-  `autor_id` int(11) NOT NULL,
-  PRIMARY KEY (`libro_id`,`autor_id`),
-  KEY `autor_id` (`autor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `num_paginas` int(11) DEFAULT NULL,
+  `stock` int(11) DEFAULT 0,
+  PRIMARY KEY (`id_libro`),
+  KEY `id_autor` (`id_autor`),
+  CONSTRAINT `libros_ibfk_1` FOREIGN KEY (`id_autor`) REFERENCES `autores` (`id_autor`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +68,7 @@ CREATE TABLE `libros` (
 
 LOCK TABLES `libros` WRITE;
 /*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-INSERT INTO `libros` VALUES (1,'Cien Años de Soledad','Novela','1967-05-30',1),(2,'Harry Potter y la Piedra Filosofal','Fantasía','1997-06-26',2),(3,'La Casa de los Espíritus','Novela','1982-09-01',3),(4,'Cuentos Completos','Cuento','1974-06-01',4),(5,'La Ciudad y los Perros','Novela','1963-09-01',5),(6,'1984','Distopía','1949-06-08',6),(7,'Rayuela','Novela','1963-06-01',7),(8,'El Aleph','Cuento','1949-01-01',4),(9,'Los Detectives Salvajes','Novela','1998-11-01',8),(10,'Animal Farm','Distopía','1945-08-17',6);
+INSERT INTO `libros` VALUES (1,'Cien años de soledad',1,'Novela','1967-06-05',417,5),(2,'Harry Potter y la piedra filosofal',2,'Fantasía','1997-06-26',223,3);
 /*!40000 ALTER TABLE `libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,18 +80,18 @@ DROP TABLE IF EXISTS `prestamos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prestamos` (
-  `prestamo_id` int(11) NOT NULL AUTO_INCREMENT,
-  `libro_id` int(11) DEFAULT NULL,
-  `usuario_id` int(11) DEFAULT NULL,
-  `fecha_prestamo` date NOT NULL,
+  `id_prestamo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_libro` int(11) DEFAULT NULL,
+  `fecha_prestamo` date DEFAULT curdate(),
   `fecha_devolucion` date DEFAULT NULL,
-  `estado` enum('prestado','devuelto') DEFAULT 'prestado',
-  PRIMARY KEY (`prestamo_id`),
-  KEY `libro_id` (`libro_id`),
-  KEY `usuario_id` (`usuario_id`),
-  CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`libro_id`) REFERENCES `libros` (`libro_id`) ON DELETE CASCADE,
-  CONSTRAINT `prestamos_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `estado` enum('Pendiente','Devuelto') DEFAULT 'Pendiente',
+  PRIMARY KEY (`id_prestamo`),
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_libro` (`id_libro`),
+  CONSTRAINT `prestamos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+  CONSTRAINT `prestamos_ibfk_2` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +100,7 @@ CREATE TABLE `prestamos` (
 
 LOCK TABLES `prestamos` WRITE;
 /*!40000 ALTER TABLE `prestamos` DISABLE KEYS */;
-INSERT INTO `prestamos` VALUES (1,1,1,'2024-09-05',NULL,'prestado'),(2,2,2,'2024-09-05',NULL,'prestado'),(107,3,3,'2023-08-01','2023-08-20','devuelto'),(108,4,2,'2023-08-15','2023-09-01','devuelto'),(109,5,4,'2023-08-20',NULL,'prestado'),(110,6,1,'2023-09-01',NULL,'prestado'),(111,2,3,'2023-09-05',NULL,'prestado'),(112,7,1,'2023-09-03',NULL,'prestado'),(113,8,4,'2023-09-05',NULL,'prestado'),(114,1,2,'2023-09-07',NULL,'prestado');
+INSERT INTO `prestamos` VALUES (1,1,1,'2024-09-09','2024-09-10','Pendiente'),(2,2,2,'2024-09-09','2024-09-15','Pendiente');
 /*!40000 ALTER TABLE `prestamos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,15 +112,15 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
-  `usuario_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `direccion` varchar(255) DEFAULT NULL,
-  `telefono` varchar(15) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
-  `fecha_registro` date NOT NULL,
-  PRIMARY KEY (`usuario_id`),
+  `fecha_registro` date DEFAULT curdate(),
+  PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -126,7 +129,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Juan Pérez','Calle Falsa 123','3201234567','juanperez@example.com','2024-09-05'),(2,'Ana Gómez','Avenida Siempre Viva 456','3109876543','anagomez@example.com','2024-09-05'),(3,'Carlos Martínez','Calle Luna 345','3112223344','carlosmartinez@example.com','2023-04-12'),(4,'Lucía Fernández','Calle Sol 567','3123334455','luciafernandez@example.com','2023-05-14'),(5,'Miguel Rodríguez','Carrera 45 #10-20','3104445566','miguelrodriguez@example.com','2023-06-18'),(6,'Claudia Torres','Avenida Las Flores 789','3155556677','claudiatorres@example.com','2023-07-20');
+INSERT INTO `usuarios` VALUES (1,'Juan Pérez','Calle Falsa 123','555-1234','juan.perez@example.com','2024-09-09'),(2,'Ana Gómez','Avenida Siempre Viva 742','555-5678','ana.gomez@example.com','2024-09-09');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
