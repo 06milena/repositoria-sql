@@ -1,0 +1,45 @@
+-- Crear la base de datos
+CREATE DATABASE Biblioteca;
+USE Biblioteca;
+
+-- Crear tabla de autores
+CREATE TABLE Autores (
+    id_autor INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50),
+    fecha_nacimiento DATE
+);
+
+-- Crear tabla de libros
+CREATE TABLE Libros (
+    id_libro INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(200) NOT NULL,
+    id_autor INT,
+    genero VARCHAR(50),
+    fecha_publicacion DATE,
+    num_paginas INT,
+    stock INT DEFAULT 0,
+    FOREIGN KEY (id_autor) REFERENCES Autores(id_autor)
+);
+
+-- Crear tabla de usuarios
+CREATE TABLE Usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    direccion VARCHAR(255),
+    telefono VARCHAR(20),
+    email VARCHAR(100) UNIQUE,
+    fecha_registro DATE DEFAULT CURRENT_DATE
+);
+
+-- Crear tabla de préstamos
+CREATE TABLE Prestamos (
+    id_prestamo INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_libro INT,
+    fecha_prestamo DATE DEFAULT CURRENT_DATE,
+    fecha_devolucion DATE,
+    estado ENUM('Pendiente', 'Devuelto') DEFAULT 'Pendiente',
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
+    FOREIGN KEY (id_libro) REFERENCES Libros(id_libro)
+);
