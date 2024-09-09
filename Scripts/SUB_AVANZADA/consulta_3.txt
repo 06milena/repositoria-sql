@@ -1,0 +1,4 @@
+-- Contar el número de libros por género
+SELECT genero, COUNT(*) AS cantidad_libros
+FROM Libros
+GROUP BY genero;
