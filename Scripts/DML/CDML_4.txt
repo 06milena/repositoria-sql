@@ -1,0 +1,8 @@
+-- Insertar más préstamos
+
+INSERT INTO Prestamos (id_usuario, id_libro, fecha_devolucion)
+VALUES (3, 3, '2024-09-12'),  -- Carlos López toma prestado "La casa de los espíritus"
+       (4, 4, '2024-09-20'),  -- María Fernández toma prestado "La ciudad y los perros"
+       (1, 5, '2024-09-25'),  -- Juan Pérez toma prestado "1984"
+       (2, 6, '2024-09-15'),  -- Ana Gómez toma prestado "Orgullo y prejuicio"
+       (5, 7, '2024-09-18');  -- Laura Jiménez toma prestado "Ensayo sobre la ceguera"
