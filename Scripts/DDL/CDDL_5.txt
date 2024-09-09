@@ -1,3 +1,3 @@
--- Agregar una fk a la tabla Libros con tabla categorías
-ALTER TABLE LibrosBiblioteca ADD id_categoria INT, 
-ADD CONSTRAINT fk_categoria_libro FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria);
+-- Agregar una nueva columna idioma a la tabla Libros
+
+ALTER TABLE Libros ADD idioma VARCHAR(50) DEFAULT 'Español';

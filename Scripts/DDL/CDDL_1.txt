@@ -1,3 +1,0 @@
--- Agregar una nueva columna idioma a la tabla Libros
-
-ALTER TABLE Libros ADD idioma VARCHAR(50) DEFAULT 'Español';
