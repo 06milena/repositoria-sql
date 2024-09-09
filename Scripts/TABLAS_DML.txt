@@ -1,0 +1,19 @@
+-- Insertar datos en la tabla Autores
+INSERT INTO Autores (nombre, nacionalidad, fecha_nacimiento)
+VALUES ('Gabriel García Márquez', 'Colombiano', '1927-03-06'),
+       ('J.K. Rowling', 'Británica', '1965-07-31');
+
+-- Insertar datos en la tabla Libros
+INSERT INTO Libros (titulo, id_autor, genero, fecha_publicacion, num_paginas, stock)
+VALUES ('Cien años de soledad', 1, 'Novela', '1967-06-05', 417, 5),
+       ('Harry Potter y la piedra filosofal', 2, 'Fantasía', '1997-06-26', 223, 3);
+
+-- Insertar datos en la tabla Usuarios
+INSERT INTO Usuarios (nombre, direccion, telefono, email)
+VALUES ('Juan Pérez', 'Calle Falsa 123', '555-1234', 'juan.perez@example.com'),
+       ('Ana Gómez', 'Avenida Siempre Viva 742', '555-5678', 'ana.gomez@example.com');
+
+-- Insertar datos en la tabla Prestamos
+INSERT INTO Prestamos (id_usuario, id_libro, fecha_devolucion)
+VALUES (1, 1, '2024-09-10'),
+       (2, 2, '2024-09-15');
