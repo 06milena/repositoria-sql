@@ -1,0 +1,7 @@
+-- Insertar más usuarios
+
+INSERT INTO Usuarios (nombre, direccion, telefono, email)
+VALUES ('Carlos López', 'Calle 22 #45-67', '555-7890', 'carlos.lopez@example.com'),
+       ('María Fernández', 'Carrera 7 #89-23', '555-9876', 'maria.fernandez@example.com'),
+       ('Pedro Castillo', 'Avenida de los Libertadores 100', '555-4567', 'pedro.castillo@example.com'),
+       ('Laura Jiménez', 'Calle 8 #10-11', '555-6543', 'laura.jimenez@example.com');
