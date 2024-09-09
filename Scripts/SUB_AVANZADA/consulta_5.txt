@@ -1,0 +1,6 @@
+-- Listar todos los libros prestados y el nombre del usuario que los ha solicitado
+SELECT Usuarios.nombre, Libros.titulo, Prestamos.fecha_prestamo, Prestamos.fecha_devolucion
+FROM Prestamos
+JOIN Usuarios ON Prestamos.id_usuario = Usuarios.id_usuario
+JOIN Libros ON Prestamos.id_libro = Libros.id_libro
+WHERE Prestamos.estado = 'Pendiente';
