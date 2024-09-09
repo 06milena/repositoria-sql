@@ -1,0 +1,3 @@
+-- Insertar un nuevo libro 
+INSERT INTO LibrosBiblioteca (titulo, id_autor, genero, fecha_publicacion, num_paginas, stock, idioma)
+VALUES ('El amor en los tiempos del cólera', 1, 'Novela', '1985-04-04', 348, 3, 'Español');
