@@ -43,3 +43,4 @@ CREATE TABLE Prestamos (
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario),
     FOREIGN KEY (id_libro) REFERENCES Libros(id_libro)
 );
+
