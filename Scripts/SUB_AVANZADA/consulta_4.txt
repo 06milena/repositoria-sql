@@ -1,0 +1,6 @@
+-- Obtener los usuarios que han prestado más de 2 libros
+SELECT U.nombre, COUNT(P.id_prestamo) AS num_prestamos
+FROM Usuarios U
+JOIN Prestamos P ON U.id_usuario = P.id_usuario
+GROUP BY U.id_usuario
+HAVING num_prestamos > 2;
