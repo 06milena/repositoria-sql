@@ -1,4 +1,5 @@
--- Actualizar el idioma de todos los libros de Gabriel García Márquez a "Español"
-UPDATE Libros
-SET idioma = 'Ingles'
-WHERE id_autor = (SELECT id_autor FROM Autores WHERE nombre = 'Gabriel García Márquez');
+-- Actualizar el idioma de determinados libros
+UPDATE `biblioteca`.`libros` SET `idioma` = 'Ingles' WHERE (`id_libro` = '2');
+UPDATE `biblioteca`.`libros` SET `idioma` = 'Español' WHERE (`id_libro` = '1');
+UPDATE `biblioteca`.`libros` SET `idioma` = 'Ingles' WHERE (`id_libro` = '6');
+UPDATE `biblioteca`.`libros` SET `idioma` = 'Ingles' WHERE (`id_libro` = '9');
