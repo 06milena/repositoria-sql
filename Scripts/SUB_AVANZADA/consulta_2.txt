@@ -1,11 +1,7 @@
--- Obtener libros prestados actualmente
-SELECT L.titulo, U.nombre AS usuario, P.fecha_prestamo
-FROM Prestamos P
-JOIN Libros L ON P.libro_id = L.libro_id
-JOIN Usuarios U ON P.usuario_id = U.usuario_id
-WHERE P.estado = 'prestado';
-
--- Contar el número de libros por género
-SELECT genero, COUNT(*) AS cantidad_libros
-FROM Libros
-GROUP BY genero;
+-- el libro más prestado y cuántas veces
+SELECT Libros.titulo, COUNT(Prestamos.id_prestamo) AS veces_prestado
+FROM Prestamos
+JOIN Libros ON Prestamos.id_libro = Libros.id_libro
+GROUP BY Libros.titulo
+ORDER BY veces_prestado DESC
+LIMIT 1;
