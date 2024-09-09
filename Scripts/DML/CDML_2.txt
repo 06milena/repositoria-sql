@@ -1,0 +1,8 @@
+-- Insertar más libros
+
+INSERT INTO Libros (titulo, id_autor, genero, fecha_publicacion, num_paginas, stock)
+VALUES ('La casa de los espíritus', 3, 'Novela', '1982-01-01', 490, 4),
+       ('La ciudad y los perros', 4, 'Novela', '1963-10-01', 351, 2),
+       ('1984', 5, 'Distopía', '1949-06-08', 328, 6),
+       ('Orgullo y prejuicio', 6, 'Romance', '1813-01-28', 432, 3),
+       ('Ensayo sobre la ceguera', 4, 'Filosofía', '1995-01-01', 352, 5);
